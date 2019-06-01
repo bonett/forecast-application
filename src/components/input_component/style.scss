@@ -11,12 +11,10 @@
     transition: padding-top 0.2s ease, margin-top 0.2s ease;
     overflow-x: hidden;
     position: relative;
+    padding-top: 60px;
     z-index: 2;
     &:focus + label{
         width: 100%;
-    }
-    &:focus, &:valid {
-        padding-top: 60px;
     }
 }
 
@@ -64,11 +62,9 @@
         background: $transparent;
         transition: padding-top 0.2s ease, margin-top 0.2s ease;
         overflow-x: hidden;
+        padding-top: 60px;
         &:focus + label{
             width: 100%;
-        }
-        &:focus, &:valid {
-            padding-top: 60px;
         }
     }
 
