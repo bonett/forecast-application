@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import moment from 'moment';
-import 'moment/locale/es';
 import PropTypes from 'prop-types';
+import GoogleApiWrapper from './../map_component';
 import './style.scss';
 
 class Location extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            forecastData: null
-        }
+        this.state = {}
     }
 
     render() {
@@ -21,7 +18,7 @@ class Location extends Component {
                     <div className="card mb-3" >
                         <div className="row">
                             <div className="col-md-8">
-                                <img src="https://clubrunner.blob.core.windows.net/00000008602/Images/Kayako/gmll_screen_002.png" className="card-img" alt="Map" />
+                                <GoogleApiWrapper latitude={data.latitude} longitude={data.longitude} />
                             </div>
                             <div className="col-md-4">
                                 <div className="card-body">
