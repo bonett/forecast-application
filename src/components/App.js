@@ -68,7 +68,6 @@ class App extends Component {
   }
 
   deleteCityHistory = (data) => {
-    console.log('ssss', data);
     let listHint = this.state.list;
     listHint.splice(listHint.findIndex((city, index) => index === data.index && city === data.city), 1);
     sessionStorage.setItem("cities", JSON.stringify(listHint));

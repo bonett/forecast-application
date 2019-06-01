@@ -59,7 +59,7 @@ With yarn:
 ```sh
 yarn
 ```
-Or with npm: 
+Or with npm (if you like to use NPM - Delete yarn.lock and yarn-error.log): 
 
 ```sh
 npm install
