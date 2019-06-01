@@ -17,10 +17,10 @@ class InputSearch extends Component {
     }
 
     validateClearButton = (event) => {
-        if (event.target.value.length !== 0) {
+        if (event.target.value.length > 0) {
             this.setState({ disableClearButton: false, value: event.target.value });
         } else {
-            this.setState({ disableClearButton: true });
+            this.setState({ disableClearButton: true, value: '' });
         }
     }
 
