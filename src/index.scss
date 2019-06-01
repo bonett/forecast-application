@@ -1,16 +1,31 @@
 @import './styles/variables.scss';
 
-*{
-    outline: none;
+*, *:focus{
+    outline: 0;
     text-decoration: none;
 }
 
 body {
     background-color: $white;
-    font-family: 'Lato', sans-serif;
+    font-family: $family-lato;
     margin: 0;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
 	vertical-align: baseline;
+}
+
+a, a:hover{
+    outline: none;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+input{
+    color: $white;
+}
+
+.btn-primary, .btn-primary:hover{
+    background-color: $purple;
+    border: none;
 }
