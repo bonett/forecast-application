@@ -1,7 +1,7 @@
 @import './../../styles/variables.scss';
 
 .location-content{
-    margin: 100px 0;
+    margin: 0;
     width: 100%;
     top: -40px;
     background-color: $black-bis;
@@ -14,15 +14,24 @@
     border: none;
 }
 
-.card{
-    z-index: 2;
+.card-location{
+    width: 96%;
     .card-title{
         margin-bottom: 20px;
     }
 
     h6.card-item{
-        font-size: 1rem;
+        font-size: 0.8rem;
         margin: 10px 0;
         font-weight: 400;
+    }
+}
+
+@media (min-width:768px){
+    .location-content{
+        margin: 100px 0;
+        width: 100%;
+        top: -40px;
+        background-color: $black-bis;
     }
 }

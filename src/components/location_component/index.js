@@ -15,20 +15,22 @@ class Location extends Component {
         return (
             <div className="location-content">
                 <div className="container">
-                    <div className="card col-12 customize" >
-                        <div className="row">
-                            <div className="col-8">
-                                <GoogleApiWrapper latitude={data.latitude} longitude={data.longitude} />
-                            </div>
-                            <div className="col-4">
-                                <div className="card-body">
-                                    <h5 className="card-title text-center">{data.name} - {data.country}</h5>
-                                    <h6 className="card-item">Humidity: <span>{data.humidity} %</span></h6>
-                                    <h6 className="card-item">Temperature: <span>{data.temperature} Cº</span></h6>
-                                    <h6 className="card-item">Pressure: <span>{data.pressure}</span></h6>
-                                    <h6 className="card-item">Max Temperature: <span>{data.temperature_max} Cº</span></h6>
-                                    <h6 className="card-item">Min Temperature: <span>{data.temperature_min} Cº</span></h6>
-                                    <h6 className="card-item">Wind: <span>{data.wind}</span></h6>
+                    <div className="col-12">
+                        <div className="card card-location customize" >
+                            <div className="row">
+                                <div className="col-7">
+                                    <GoogleApiWrapper latitude={data.latitude} longitude={data.longitude} />
+                                </div>
+                                <div className="col-5">
+                                    <div className="card-body">
+                                        <h5 className="card-title text-center">{data.name} - {data.country}</h5>
+                                        <h6 className="card-item">Humidity: <span>{data.humidity} %</span></h6>
+                                        <h6 className="card-item">Temperature: <span>{data.temperature} Cº</span></h6>
+                                        <h6 className="card-item">Pressure: <span>{data.pressure}</span></h6>
+                                        <h6 className="card-item">Max Temperature: <span>{data.temperature_max} Cº</span></h6>
+                                        <h6 className="card-item">Min Temperature: <span>{data.temperature_min} Cº</span></h6>
+                                        <h6 className="card-item">Wind: <span>{data.wind}</span></h6>
+                                    </div>
                                 </div>
                             </div>
                         </div>
