@@ -116,6 +116,24 @@ class App extends Component {
       })
   }
 
+  getLastCityForecastDetails = (city) => {
+    const list = [...this.state.listHints];
+    const api_weather = getUrlWeatherByCity(city);
+    fetch(api_weather)
+      .then(resolve => {
+        return resolve.json();
+      }).then(data => {
+        let newWeather = transformWeather(data);
+        this.setState({
+          data: newWeather,
+          listHints: list,
+          city
+        })
+      }).catch(error => {
+        console.log('Error:', error);
+      })
+  }
+
   deleteCityHistory = (data) => {
     const list = [...this.state.listHints];
     list.splice(list.findIndex((city, index) => index === data.index && city === data.city), 1);
@@ -142,7 +160,7 @@ class App extends Component {
           searchCityByInput={this.getCityForecastDetails}
           resetCitySearch={this.clearForm}
           historyData={listHints}
-          serchCityAgain={this.getCityForecastDetails}
+          serchCityAgain={this.getLastCityForecastDetails}
           deleteCity={this.deleteCityHistory} />
         <div className="wrapper-content">
           {
