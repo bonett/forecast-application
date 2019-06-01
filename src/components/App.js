@@ -6,6 +6,7 @@ import Footer from './footer_component';
 
 import getUrlWeatherByCity from './../services/getUrlWeatherByCity';
 import transformWeather from './../services/transformWeather';
+import AlertComponent from './alert_component';
 
 class App extends Component {
 
@@ -13,7 +14,8 @@ class App extends Component {
     super(props);
     this.state = {
       city: null,
-      data: {}
+      data: {},
+      visible: false
     }
   }
 
@@ -85,31 +87,49 @@ class App extends Component {
       .then(resolve => {
         return resolve.json();
       }).then(data => {
-        let newWeather = transformWeather(data);
-        this.setState({
-          data: newWeather,
-          city
-        })
-      }).catch(error => console.error('Error:', error))
+        if (data.cod === 200) {
+          let newWeather = transformWeather(data);
+          this.setState({
+            data: newWeather,
+            city
+          })
+        } else {
+          this.setState({ visible: true }, () => {
+            window.setTimeout(() => {
+              this.setState({ visible: false })
+            }, 3500)
+          });
+        }
+      }).catch(error => {
+        console.log('Error:', error);
+      })
   }
 
   clearForm = () => {
     this.setState({
       city: null,
+      visible: false,
       data: {}
     })
   }
 
   render() {
-    const { city, data } = this.state;
+    const { city, data, visible } = this.state;
     return (
       <div className="app-content">
         <canvas id="canvas"></canvas>
         <Navigation />
         <Header searchCityByInput={this.getCityForecastDetails} resetCitySearch={this.clearForm} />
-        {
-          city ? <Location data={data} /> : null
-        }
+        <div>
+          {
+            visible ? <AlertComponent /> : null
+          }
+        </div>
+        <div>
+          {
+            city ? <Location data={data} /> : null
+          }
+        </div>
         <Footer />
       </div>
     );

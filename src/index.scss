@@ -44,19 +44,27 @@ input{
 .btn-secundary{
     border-color: $white;
     color: $white;
+    text-transform: capitalize;
     background: none;
     &:hover{
         border-color: $purple;
         color:$white;
         background-color: $purple
     }
+    &:focus{
+        box-shadow: none;
+    }
 }
 
 .btn-primary {
     background-color: $purple;
+    text-transform: capitalize;
     border: none;
     &:hover{
         background-color: $hover-purple;
+    }
+    &:focus{
+        box-shadow: none;
     }
     &:disabled {
         color: #fff;

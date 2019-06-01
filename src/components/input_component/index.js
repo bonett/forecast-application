@@ -25,8 +25,9 @@ class InputSearch extends Component {
     }
 
     clearForm = () => {
-        this.setState({ value: '' });
+        this.setState({ value: '', disableClearButton: true });
         this.props.callClearFromHeader('');
+        $("#name").focus();
     }
 
     handleKeyPress = (event) => {
@@ -41,7 +42,7 @@ class InputSearch extends Component {
             <div className="col-12 col-md-12 mb-2 mb-md-0">
                 <input type="text" name="name" className="input-location" id="name" value={value} onKeyPress={this.handleKeyPress} onChange={this.validateClearButton} required />
                 <label><span>{data.input_search.placeholder}</span></label>
-                <button type="button" className="btn btn-primary" disabled={disableClearButton} onClick={this.clearForm} >clear search</button>
+                <button type="button" className="btn btn-primary" disabled={disableClearButton} onClick={this.clearForm} >{data.input_search.search_button}</button>
             </div>
         )
     }

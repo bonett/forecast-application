@@ -5,5 +5,9 @@ export default {
     },
     input_search: {
         placeholder: "Are you looking for a estimated forecast in your location ?",
+        search_button: 'reset city desire'
+    },
+    error_message: {
+        description: 'City doesn´t exist in our database =( '
     }
 }
