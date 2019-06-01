@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from './navbar_component';
 import Header from './header_component';
+import Footer from './footer_component';
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class App extends Component {
       <div className="app-content">
         <Navigation />
         <Header />
+        <Footer />
       </div>
     );
   }
