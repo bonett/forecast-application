@@ -2,7 +2,7 @@
 
 > Version 1.0.0.
 
-This forecast application with Webpack, ReactJs, Reactstrap, Sass, Bootstrap, Babel, BEM.
+This forecast application with ReactJs, Sass, Bootstrap, BEM.
 
 ## Requirements
 
