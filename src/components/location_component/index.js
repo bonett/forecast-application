@@ -17,10 +17,10 @@ class Location extends Component {
                 <div className="container">
                     <div className="card mb-3 customize" >
                         <div className="row">
-                            <div className="col-md-8">
+                            <div className="col-sm-12 col-xs-12 col-md-8 col-lg-12">
                                 <GoogleApiWrapper latitude={data.latitude} longitude={data.longitude} />
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-sm-12 col-xs-12 col-md-4 col-lg-4">
                                 <div className="card-body">
                                     <h5 className="card-title text-center">{data.name} - {data.country}</h5>
                                     <h6 className="card-item">Humidity: <span>{data.humidity} %</span></h6>
