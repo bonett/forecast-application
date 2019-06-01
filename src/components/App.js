@@ -21,6 +21,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.forecastBackground();
+  }
+
+  forecastBackground() {
     $(document).ready(function () {
       var canvas = $('#canvas')[0];
       canvas.width = window.innerWidth;
@@ -83,10 +87,13 @@ class App extends Component {
   }
 
   getCityForecastDetails = (city) => {
+    console.log(city, JSON.parse(sessionStorage.getItem("cities")));
     const api_weather = getUrlWeatherByCity(city);
     const list = [...this.state.listHints];
     list.push(city);
+
     sessionStorage.setItem("cities", JSON.stringify(list));
+
     fetch(api_weather)
       .then(resolve => {
         return resolve.json();

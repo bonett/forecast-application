@@ -38,7 +38,7 @@ class Header extends Component {
                             <InputSearch callbackFromHeader={this.getCityFromInput} callClearFromHeader={this.clearCityData} />
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row toaster-content">
                         {historyData.length > 0 ? <ToasterComponent cities={historyData} callDeleteCity={this.getDeleteCity} callSearchAgainCity={this.getCityDetailsAgain} /> : null}
                     </div>
                 </div>
