@@ -6,7 +6,7 @@ const Navigation = () => (
     <nav className="navbar navbar-expand-lg fixed-top">
         <div className="container">
             <a className="navbar_brand" href="#">{data.navigation.application_name}</a>
-            <a className="btn btn-primary" href="#">{data.navigation.button_reference}</a>
+            <a className="btn btn-secundary" href="#">{data.navigation.button_reference}</a>
         </div>
     </nav>
 );

@@ -93,13 +93,20 @@ class App extends Component {
       }).catch(error => console.error('Error:', error))
   }
 
+  clearForm = () => {
+    this.setState({
+      city: null,
+      data: {}
+    })
+  }
+
   render() {
     const { city, data } = this.state;
     return (
       <div className="app-content">
         <canvas id="canvas"></canvas>
         <Navigation />
-        <Header searchCityByInput={this.getCityForecastDetails} />
+        <Header searchCityByInput={this.getCityForecastDetails} resetCitySearch={this.clearForm} />
         {
           city ? <Location data={data} /> : null
         }

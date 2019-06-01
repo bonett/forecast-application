@@ -30,7 +30,37 @@ input{
     z-index: 1;
 }
 
-.btn-primary, .btn-primary:hover{
+.btn{
+    position: relative;
+    z-index: 2;
+    border-radius: 50px;
+    margin: 20px 0;
+    cursor: pointer;
+    padding: 8px 26px;
+    padding: 8px 26px;
+    transition: 0.5s all ease;
+} 
+
+.btn-secundary{
+    border-color: $white;
+    color: $white;
+    background: none;
+    &:hover{
+        border-color: $purple;
+        color:$white;
+        background-color: $purple
+    }
+}
+
+.btn-primary {
     background-color: $purple;
     border: none;
+    &:hover{
+        background-color: $hover-purple;
+    }
+    &:disabled {
+        color: #fff;
+        background-color: $purple;
+        border-color: $purple;
+    }
 }

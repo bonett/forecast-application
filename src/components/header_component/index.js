@@ -14,6 +14,10 @@ class Header extends Component {
         this.props.searchCityByInput(city);
     }
 
+    clearCityData = () => {
+        this.props.resetCitySearch('');
+    }
+
     render() {
         return (
             <header className="masthead-content text-white text-center">
@@ -21,7 +25,7 @@ class Header extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                            <InputSearch callbackFromParent={this.getCityFromInput} />
+                            <InputSearch callbackFromHeader={this.getCityFromInput} callClearFromHeader={this.clearCityData} />
                         </div>
                     </div>
                 </div>

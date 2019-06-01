@@ -73,35 +73,35 @@
     }
 
     .input-location + label{
-    display: block;
-    position: relative;
-    white-space: nowrap;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    border-top: 1px solid $purple;
-    -webkit-transition: width 0.4s ease;
-    transition: width 0.4s ease;
-    height: 0px;
+        display: block;
+        position: relative;
+        white-space: nowrap;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        border-top: 1px solid $purple;
+        -webkit-transition: width 0.4s ease;
+        transition: width 0.4s ease;
+        height: 0px;
     }
 
     .input-location:focus + label > span,
-    .input-location:valid + label > span {
-    top: -100px;
-    font-size: $size-4;
-    color: $white;
+    .input-location:valid + label > span{
+        top: -100px;
+        font-size: $size-4;
+        color: $white;
     }
 
     .input-location + label > span {
-    font-weight:200;
-    margin: 0;
-    position: absolute;
-    color: $white;
-    font-size: $size-4;
-    top: -66px;
-    left: 0px;
-    z-index: 0;
-    -webkit-transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
-    transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+        font-weight:200;
+        margin: 0;
+        position: absolute;
+        color: $white;
+        font-size: $size-4;
+        top: -66px;
+        left: 0px;
+        z-index: 0;
+        -webkit-transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+        transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
     }
 }
