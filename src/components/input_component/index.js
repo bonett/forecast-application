@@ -13,7 +13,7 @@ class InputSearch extends Component {
     }
 
     componentDidMount() {
-        $("#name").focus();
+        /* $("#name").focus(); */
     }
 
     validateClearButton = (event) => {
@@ -27,7 +27,7 @@ class InputSearch extends Component {
     clearForm = () => {
         this.setState({ value: '', disableClearButton: true });
         this.props.callClearFromHeader('');
-        $("#name").focus();
+        /* $("#name").focus(); */
     }
 
     handleKeyPress = (event) => {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 class ToasterComponent extends Component {
+
     constructor(props) {
         super(props);
         this.state = {}
@@ -21,30 +22,31 @@ class ToasterComponent extends Component {
     };
 
     renderLastCities = (cities) => {
-        let lastCities;
         if (cities.length > 5) {
-            lastCities = cities.slice(cities.length - 5, cities.length)
+            return cities.slice(cities.length - 5, cities.length);
         } else {
-            lastCities = cities;
+            return cities;
         }
-        return (
-            lastCities.map((item, index) => {
-                return (
-                    <div className="card text-center" key={index}>
-                        <div className="card-body">
-                            <h5 className="card-title" onClick={() => this.handleUpdateCity(item)}>{item}</h5>
-                            <a className="btn btn-primary" onClick={() => this.handleDeleteCity(index, item)}><i className="fa fa-close"></i></a>
-                        </div>
-                    </div>
-                )
-            })
-        )
     }
 
     render() {
         const { cities } = this.props;
+        const lastCities = this.renderLastCities(cities);
         return (
-            this.renderLastCities(cities)
+            <div>
+                {
+                    lastCities.map((item, index) => {
+                        return (
+                            <div className="card text-center" key={index}>
+                                <div className="card-body">
+                                    <h5 className="card-title" onClick={() => this.handleUpdateCity(item)}>{item}</h5>
+                                    <a className="btn btn-primary" onClick={() => this.handleDeleteCity(index, item)}><i className="fa fa-close"></i></a>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         )
     }
 }
