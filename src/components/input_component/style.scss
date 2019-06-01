@@ -10,6 +10,8 @@
     background: $transparent;
     transition: padding-top 0.2s ease, margin-top 0.2s ease;
     overflow-x: hidden;
+    position: relative;
+    z-index: 2;
     &:focus + label{
         width: 100%;
     }
@@ -24,7 +26,7 @@
   white-space: nowrap;
   padding: 0;
   margin: 0;
-  width: 10%;
+  width: 100%;
   border-top: 1px solid $purple;
   -webkit-transition: width 0.4s ease;
   transition: width 0.4s ease;
@@ -76,7 +78,7 @@
     white-space: nowrap;
     padding: 0;
     margin: 0;
-    width: 10%;
+    width: 100%;
     border-top: 1px solid $purple;
     -webkit-transition: width 0.4s ease;
     transition: width 0.4s ease;
@@ -95,7 +97,7 @@
     margin: 0;
     position: absolute;
     color: $white;
-    font-size: $size-3;
+    font-size: $size-4;
     top: -66px;
     left: 0px;
     z-index: 0;

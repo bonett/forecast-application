@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: $white;
+    background-color: $black-bis;
     font-family: $family-lato;
     margin: 0;
 	padding: 0;
@@ -23,6 +23,11 @@ a, a:hover{
 
 input{
     color: $white;
+}
+
+#canvas{
+    position: absolute;
+    z-index: 1;
 }
 
 .btn-primary, .btn-primary:hover{

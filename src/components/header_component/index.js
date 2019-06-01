@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import InputSearch from '../input_component';
 import './style.scss';
 
-const Header = () => (
-    <header className="masthead-content text-white text-center">
-        <div className="overlay"></div>
-        <div className="container">
-            <div className="row">
-                <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <InputSearch />
+class Header extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {}
+    }
+
+    getCityFromInput = (city) => {
+        this.props.searchCityByInput(city);
+    }
+
+    render() {
+        return (
+            <header className="masthead-content text-white text-center">
+                <div className="overlay"></div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                            <InputSearch callbackFromParent={this.getCityFromInput} />
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </header>
-);
+            </header>
+        )
+    }
+}
+
+Header.propTypes = {
+}
 
 export default Header;

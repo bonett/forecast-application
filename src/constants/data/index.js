@@ -4,6 +4,6 @@ export default {
         button_reference: 'follow me !'
     },
     input_search: {
-        placeholder: "Are you looking anywhere forecast for your location... ?",
+        placeholder: "Are you looking for a estimated forecast in your location ?",
     }
 }
