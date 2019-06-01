@@ -1,31 +1,37 @@
 @import './../../styles/variables.scss';
 
 .location-content{
-    margin: 100px 0;
+    margin: 0;
     width: 100%;
-    position: relative;
-    z-index: 2;
     top: -40px;
     background-color: $black-bis;
 }
 
 .customize{
-    position: relative;
     top: -40px;
     box-shadow: 0px 0px 5px $box-shadow-1;
     border-radius: 6px;
     border: none;
 }
 
-.card{
-    z-index: 2;
+.card-location{
+    width: 96%;
     .card-title{
         margin-bottom: 20px;
     }
 
     h6.card-item{
-        font-size: 1rem;
+        font-size: 0.8rem;
         margin: 10px 0;
         font-weight: 400;
+    }
+}
+
+@media (min-width:768px){
+    .location-content{
+        margin: 100px 0;
+        width: 100%;
+        top: -40px;
+        background-color: $black-bis;
     }
 }

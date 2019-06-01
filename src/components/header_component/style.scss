@@ -23,9 +23,7 @@
 }
 
 .toaster-content{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    display: block;
 }
 
 @media (min-width:768px){

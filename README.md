@@ -81,16 +81,8 @@ npm run start
 ```
 
 
-Forecast should be running on http://localhost:8080/.
+Forecast should be running on http://localhost:3000/.
 
-
-## Development setup
-
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
-
-```sh
-yarn test
-```
 
 ## Release History
 

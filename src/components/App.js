@@ -16,96 +16,31 @@ class App extends Component {
       city: null,
       data: {},
       visible: false,
-      listHints: JSON.parse(sessionStorage.getItem("cities"))
+      list: JSON.parse(sessionStorage.getItem("cities"))
     }
   }
 
   componentDidMount() {
-    this.forecastBackground();
-  }
 
-  forecastBackground() {
-    $(document).ready(function () {
-      var canvas = $('#canvas')[0];
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      if (canvas.getContext) {
-        var ctx = canvas.getContext('2d');
-        var w = canvas.width;
-        var h = canvas.height;
-        ctx.strokeStyle = 'rgba(174,194,224,0.5)';
-        ctx.lineWidth = 1;
-        ctx.lineCap = 'round';
-
-
-        var init = [];
-        var maxParts = 1000;
-        for (var a = 0; a < maxParts; a++) {
-          init.push({
-            x: Math.random() * w,
-            y: Math.random() * h,
-            l: Math.random() * 1,
-            xs: -4 + Math.random() * 4 + 2,
-            ys: Math.random() * 1 + 2
-          })
-        }
-
-        var particles = [];
-        for (var b = 0; b < maxParts; b++) {
-          particles[b] = init[b];
-        }
-
-        function draw() {
-          ctx.clearRect(0, 0, w, h);
-          for (var c = 0; c < particles.length; c++) {
-            var p = particles[c];
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p.x + p.l * p.xs, p.y + p.l * p.ys);
-            ctx.stroke();
-          }
-          move();
-        }
-
-        function move() {
-          for (var b = 0; b < particles.length; b++) {
-            var p = particles[b];
-            p.x += p.xs;
-            p.y += p.ys;
-            if (p.x > w || p.y > h) {
-              p.x = Math.random() * w;
-              p.y = -20;
-            }
-          }
-        }
-
-        setInterval(draw, 30);
-
-      }
-    });
   }
 
   getCityForecastDetails = (city) => {
     const api_weather = getUrlWeatherByCity(city);
-    const list = [...this.state.listHints];
+    const listHint = this.state.list;
     fetch(api_weather)
       .then(resolve => {
         return resolve.json();
       }).then(data => {
         if (data.cod === 200) {
-          if (!list.includes(city)) {
-            list.push(city);
-            sessionStorage.setItem("cities", JSON.stringify(list));
-            let newWeather = transformWeather(data);
-            this.setState({
-              data: newWeather,
-              listHints: list,
-              city
-            })
-          }
+          listHint.push(city);
+          sessionStorage.setItem("cities", JSON.stringify(listHint));
+          let newWeather = transformWeather(data);
+          this.setState({
+            data: newWeather,
+            city
+          })
         } else {
-          this.setState({ visible: true, listHints: list }, () => {
+          this.setState({ visible: true }, () => {
             window.setTimeout(() => {
               this.setState({ visible: false })
             }, 3000)
@@ -117,7 +52,6 @@ class App extends Component {
   }
 
   getLastCityForecastDetails = (city) => {
-    const list = [...this.state.listHints];
     const api_weather = getUrlWeatherByCity(city);
     fetch(api_weather)
       .then(resolve => {
@@ -126,7 +60,6 @@ class App extends Component {
         let newWeather = transformWeather(data);
         this.setState({
           data: newWeather,
-          listHints: list,
           city
         })
       }).catch(error => {
@@ -135,10 +68,11 @@ class App extends Component {
   }
 
   deleteCityHistory = (data) => {
-    const list = [...this.state.listHints];
-    list.splice(list.findIndex((city, index) => index === data.index && city === data.city), 1);
-    sessionStorage.setItem("cities", JSON.stringify(list));
-    this.setState({ listHints: list, city: null })
+    console.log('ssss', data);
+    let listHint = this.state.list;
+    listHint.splice(listHint.findIndex((city, index) => index === data.index && city === data.city), 1);
+    sessionStorage.setItem("cities", JSON.stringify(listHint));
+    this.setState({ city: null, list: listHint })
   }
 
   clearForm = () => {
@@ -150,17 +84,17 @@ class App extends Component {
   }
 
   render() {
-    const { city, data, visible, listHints } = this.state;
+    const { city, data, visible } = this.state;
+    const listHints = JSON.parse(sessionStorage.getItem("cities"));
     return (
       <div className="app-content">
         {visible ? <AlertComponent /> : null}
-        <canvas id="canvas"></canvas>
         <Navigation />
         <Header
           searchCityByInput={this.getCityForecastDetails}
           resetCitySearch={this.clearForm}
-          historyData={listHints}
           serchCityAgain={this.getLastCityForecastDetails}
+          historyData={listHints}
           deleteCity={this.deleteCityHistory} />
         <div className="wrapper-content">
           {

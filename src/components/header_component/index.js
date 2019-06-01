@@ -39,7 +39,7 @@ class Header extends Component {
                         </div>
                     </div>
                     <div className="row toaster-content">
-                        {historyData.length > 0 ? <ToasterComponent cities={historyData} callDeleteCity={this.getDeleteCity} callSearchAgainCity={this.getCityDetailsAgain} /> : null}
+                        {historyData !== null ? <ToasterComponent cities={historyData} callDeleteCity={this.getDeleteCity} callSearchAgainCity={this.getCityDetailsAgain} /> : null}
                     </div>
                 </div>
             </header>
