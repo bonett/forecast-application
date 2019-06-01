@@ -16,7 +16,7 @@ class App extends Component {
       city: null,
       data: {},
       visible: false,
-      listHints: []
+      listHints: JSON.parse(sessionStorage.getItem("cities"))
     }
   }
 
@@ -43,7 +43,7 @@ class App extends Component {
             y: Math.random() * h,
             l: Math.random() * 1,
             xs: -4 + Math.random() * 4 + 2,
-            ys: Math.random() * 10 + 10
+            ys: Math.random() * 1 + 2
           })
         }
 
@@ -86,6 +86,7 @@ class App extends Component {
     const api_weather = getUrlWeatherByCity(city);
     const list = [...this.state.listHints];
     list.push(city);
+    sessionStorage.setItem("cities", JSON.stringify(list));
     fetch(api_weather)
       .then(resolve => {
         return resolve.json();
@@ -110,10 +111,10 @@ class App extends Component {
   }
 
   deleteCityHistory = (data) => {
-    console.log(data);
     const list = [...this.state.listHints];
     list.splice(list.findIndex((city, index) => index === data.index && city === data.city), 1);
-    this.setState({ listHints: list })
+    sessionStorage.setItem("cities", JSON.stringify(list));
+    this.setState({ listHints: list, city: null })
   }
 
   clearForm = () => {
