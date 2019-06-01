@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ToasterComponent from '../toaster_component';
 import InputSearch from '../input_component';
 import './style.scss';
 
@@ -18,7 +19,16 @@ class Header extends Component {
         this.props.resetCitySearch('');
     }
 
+    getCityDetailsAgain = (city) => {
+        this.props.serchCityAgain(city);
+    }
+
+    getDeleteCity = (data) => {
+        this.props.deleteCity(data);
+    }
+
     render() {
+        const { historyData } = this.props;
         return (
             <header className="masthead-content text-white text-center">
                 <div className="overlay"></div>
@@ -28,6 +38,9 @@ class Header extends Component {
                             <InputSearch callbackFromHeader={this.getCityFromInput} callClearFromHeader={this.clearCityData} />
                         </div>
                     </div>
+                    <div className="row">
+                        {historyData.length > 0 ? <ToasterComponent cities={historyData} callDeleteCity={this.getDeleteCity} callSearchAgainCity={this.getCityDetailsAgain} /> : null}
+                    </div>
                 </div>
             </header>
         )
@@ -35,6 +48,11 @@ class Header extends Component {
 }
 
 Header.propTypes = {
+    historyData: PropTypes.array,
+    searchCityByInput: PropTypes.func,
+    resetCitySearch: PropTypes.func,
+    serchCityAgain: PropTypes.func,
+    deleteCity: PropTypes.func
 }
 
 export default Header;

@@ -55,7 +55,11 @@ input{
         box-shadow: none;
     }
 }
-
+.wrapper-content{
+    height: 200px;
+    position: relative;
+    z-index: 2;
+}
 .btn-primary {
     background-color: $purple;
     text-transform: capitalize;

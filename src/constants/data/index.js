@@ -8,6 +8,6 @@ export default {
         search_button: 'reset city desire'
     },
     error_message: {
-        description: 'City doesn´t exist in our database =( '
+        description: 'The city name doesn´t exist in our database =( '
     }
 }

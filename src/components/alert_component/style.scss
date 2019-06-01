@@ -1,0 +1,8 @@
+@import './../../styles/variables.scss';
+
+.alert{
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+    top: 15%;
+}

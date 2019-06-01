@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Navigation from './navbar_component';
 import Header from './header_component';
+import AlertComponent from './alert_component';
 import Location from './location_component';
 import Footer from './footer_component';
 
 import getUrlWeatherByCity from './../services/getUrlWeatherByCity';
-import transformWeather from './../services/transformWeather';
-import AlertComponent from './alert_component';
+import transformWeather from './../services/transformWeather'
 
 class App extends Component {
 
@@ -15,7 +15,8 @@ class App extends Component {
     this.state = {
       city: null,
       data: {},
-      visible: false
+      visible: false,
+      listHints: []
     }
   }
 
@@ -83,6 +84,8 @@ class App extends Component {
 
   getCityForecastDetails = (city) => {
     const api_weather = getUrlWeatherByCity(city);
+    const list = [...this.state.listHints];
+    list.push(city);
     fetch(api_weather)
       .then(resolve => {
         return resolve.json();
@@ -91,18 +94,26 @@ class App extends Component {
           let newWeather = transformWeather(data);
           this.setState({
             data: newWeather,
+            listHints: list,
             city
           })
         } else {
-          this.setState({ visible: true }, () => {
+          this.setState({ visible: true, listHints: list }, () => {
             window.setTimeout(() => {
               this.setState({ visible: false })
-            }, 3500)
+            }, 3000)
           });
         }
       }).catch(error => {
         console.log('Error:', error);
       })
+  }
+
+  deleteCityHistory = (data) => {
+    console.log(data);
+    const list = [...this.state.listHints];
+    list.splice(list.findIndex((city, index) => index === data.index && city === data.city), 1);
+    this.setState({ listHints: list })
   }
 
   clearForm = () => {
@@ -114,18 +125,19 @@ class App extends Component {
   }
 
   render() {
-    const { city, data, visible } = this.state;
+    const { city, data, visible, listHints } = this.state;
     return (
       <div className="app-content">
+        {visible ? <AlertComponent /> : null}
         <canvas id="canvas"></canvas>
         <Navigation />
-        <Header searchCityByInput={this.getCityForecastDetails} resetCitySearch={this.clearForm} />
-        <div>
-          {
-            visible ? <AlertComponent /> : null
-          }
-        </div>
-        <div>
+        <Header
+          searchCityByInput={this.getCityForecastDetails}
+          resetCitySearch={this.clearForm}
+          historyData={listHints}
+          serchCityAgain={this.getCityForecastDetails}
+          deleteCity={this.deleteCityHistory} />
+        <div className="wrapper-content">
           {
             city ? <Location data={data} /> : null
           }

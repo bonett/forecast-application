@@ -15,7 +15,7 @@ class Location extends Component {
         return (
             <div className="location-content">
                 <div className="container">
-                    <div className="card mb-3" >
+                    <div className="card mb-3 customize" >
                         <div className="row">
                             <div className="col-md-8">
                                 <GoogleApiWrapper latitude={data.latitude} longitude={data.longitude} />
