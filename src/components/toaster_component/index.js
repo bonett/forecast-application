@@ -20,10 +20,15 @@ class ToasterComponent extends Component {
         this.props.callDeleteCity(data);
     };
 
-    render() {
-        const { cities } = this.props;
+    renderLastCities = (cities) => {
+        let lastCities;
+        if (cities.length > 5) {
+            lastCities = cities.slice(cities.length - 5, cities.length)
+        } else {
+            lastCities = cities;
+        }
         return (
-            cities.map((item, index) => {
+            lastCities.map((item, index) => {
                 return (
                     <div className="card text-center" key={index}>
                         <div className="card-body">
@@ -33,6 +38,13 @@ class ToasterComponent extends Component {
                     </div>
                 )
             })
+        )
+    }
+
+    render() {
+        const { cities } = this.props;
+        return (
+            this.renderLastCities(cities)
         )
     }
 }
