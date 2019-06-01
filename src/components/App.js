@@ -85,7 +85,6 @@ class App extends Component {
       .then(resolve => {
         return resolve.json();
       }).then(data => {
-        console.log(data);
         let newWeather = transformWeather(data);
         this.setState({
           data: newWeather,

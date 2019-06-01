@@ -12,6 +12,8 @@ const transformWeather = weather_data => {
     const temperature_max = getTemp(temp_max);
     const temperature_min = getTemp(temp_min);
     const temperature = getTemp(temp);
+    const name = weather_data.name;
+    const country = weather_data.sys.country;
 
     const data = {
         humidity,
@@ -21,6 +23,8 @@ const transformWeather = weather_data => {
         temperature_min,
         longitude,
         latitude,
+        name,
+        country,
         wind: `${speed} m/s`,
     }
 
