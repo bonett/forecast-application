@@ -87,24 +87,23 @@ class App extends Component {
   }
 
   getCityForecastDetails = (city) => {
-    console.log(city, JSON.parse(sessionStorage.getItem("cities")));
     const api_weather = getUrlWeatherByCity(city);
     const list = [...this.state.listHints];
-    list.push(city);
-
-    sessionStorage.setItem("cities", JSON.stringify(list));
-
     fetch(api_weather)
       .then(resolve => {
         return resolve.json();
       }).then(data => {
         if (data.cod === 200) {
-          let newWeather = transformWeather(data);
-          this.setState({
-            data: newWeather,
-            listHints: list,
-            city
-          })
+          if (!list.includes(city)) {
+            list.push(city);
+            sessionStorage.setItem("cities", JSON.stringify(list));
+            let newWeather = transformWeather(data);
+            this.setState({
+              data: newWeather,
+              listHints: list,
+              city
+            })
+          }
         } else {
           this.setState({ visible: true, listHints: list }, () => {
             window.setTimeout(() => {
