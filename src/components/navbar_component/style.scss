@@ -2,10 +2,11 @@
 
 .navbar{
     background: 0 0;
-    &_brand{
+    a.brand{
         color: $white;
         font-size: $size-5;
         text-transform: capitalize;
+        cursor: pointer;
         &:hover{
             color: $white;
         }
