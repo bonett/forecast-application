@@ -2,7 +2,11 @@
 
 > Version 1.0.0.
 
+<<<<<<< HEAD
 This forecast application with ReactJs, Sass, Bootstrap, BEM.
+=======
+This forecast application with ReactJs, SessionStorage, Bem, Sass, Bootstrap4, Font-awesome, convert-units, moment, Google Maps React, Proptypes.
+>>>>>>> master
 
 ## Requirements
 
