@@ -34,7 +34,7 @@ class App extends Component {
         return resolve.json();
       }).then(data => {
         if (data.cod === 200) {
-          const result = listHint.includes(city);
+          const result = listHint.filter(item => item === city);
           if (!result) {
             listHint.push(city);
             sessionStorage.setItem("cities", JSON.stringify(listHint));
