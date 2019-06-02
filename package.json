@@ -2,6 +2,7 @@
   "name": "weather-app",
   "version": "0.1.0",
   "private": true,
+  "author": "Wilfrido Bonett Paez - FrontEnd Developer",
   "homepage": "https://bonett.github.io/weather-app",
   "dependencies": {
     "convert-units": "^2.3.4",
