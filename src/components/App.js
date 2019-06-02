@@ -50,15 +50,18 @@ class App extends Component {
           let result;
           listHint !== null ? result = this.validateCityHint(listHint, city) : result = false;
           if (!result) {
-            listHint.push(city);
-            sessionStorage.setItem("cities", JSON.stringify(listHint));
+            if (listHint !== []) {
+              listHint.push(city);
+              sessionStorage.setItem("cities", JSON.stringify(listHint));
+            } else {
+              sessionStorage.setItem("cities", JSON.stringify(city));
+            }
             let newWeather = transformWeather(data);
             this.setState({
               data: newWeather,
               city
             })
           } else {
-            sessionStorage.setItem("cities", JSON.stringify(city));
             let newWeather = transformWeather(data);
             this.setState({
               data: newWeather,
