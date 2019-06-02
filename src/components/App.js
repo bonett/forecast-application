@@ -16,17 +16,19 @@ class App extends Component {
       city: null,
       data: {},
       visible: false,
-      list: JSON.parse(sessionStorage.getItem("cities"))
+      list: {}
     }
   }
 
   componentDidMount() {
-
+    this.setState({
+      list: JSON.parse(sessionStorage.getItem("cities"))
+    })
   }
 
   getCityForecastDetails = (city) => {
     const api_weather = getUrlWeatherByCity(city);
-    const listHint = this.state.list;
+    let listHint = this.state.list;
     fetch(api_weather)
       .then(resolve => {
         return resolve.json();
