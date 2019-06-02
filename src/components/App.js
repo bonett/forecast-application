@@ -21,6 +21,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    sessionStorage.setItem("cities", JSON.stringify([]));
     this.setState({
       list: JSON.parse(sessionStorage.getItem("cities"))
     })
@@ -47,26 +48,30 @@ class App extends Component {
         return resolve.json();
       }).then(data => {
         if (data.cod === 200) {
-          let result;
-          listHint !== null ? result = this.validateCityHint(listHint, city) : result = false;
-          if (!result) {
-            if (listHint !== []) {
-              listHint.push(city);
-              sessionStorage.setItem("cities", JSON.stringify(listHint));
-            } else {
-              sessionStorage.setItem("cities", JSON.stringify(city));
-            }
+          if (listHint === null) {
+            sessionStorage.setItem("cities", JSON.stringify(city));
             let newWeather = transformWeather(data);
             this.setState({
               data: newWeather,
               city
             })
           } else {
-            let newWeather = transformWeather(data);
-            this.setState({
-              data: newWeather,
-              city
-            })
+            const result = this.validateCityHint(listHint, city);
+            if (!result) {
+              listHint.push(city);
+              sessionStorage.setItem("cities", JSON.stringify(listHint));
+              let newWeather = transformWeather(data);
+              this.setState({
+                data: newWeather,
+                city
+              })
+            } else {
+              let newWeather = transformWeather(data);
+              this.setState({
+                data: newWeather,
+                city
+              })
+            }
           }
         } else {
           this.setState({ visible: true }, () => {
