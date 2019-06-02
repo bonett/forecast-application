@@ -26,6 +26,19 @@ class App extends Component {
     })
   }
 
+  validateCityHint = (list, city) => {
+    let validator;
+    for (let index = 0; index < list.length; index++) {
+      if (list[index] === city) {
+        validator = true;
+        break;
+      } else {
+        validator = false;
+      }
+    }
+    return validator;
+  }
+
   getCityForecastDetails = (city) => {
     const api_weather = getUrlWeatherByCity(city);
     let listHint = this.state.list;
@@ -34,7 +47,7 @@ class App extends Component {
         return resolve.json();
       }).then(data => {
         if (data.cod === 200) {
-          const result = listHint.filter(item => item === city);
+          const result = this.validateCityHint(listHint, city);
           if (!result) {
             listHint.push(city);
             sessionStorage.setItem("cities", JSON.stringify(listHint));
