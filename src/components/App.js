@@ -34,13 +34,22 @@ class App extends Component {
         return resolve.json();
       }).then(data => {
         if (data.cod === 200) {
-          listHint.push(city);
-          sessionStorage.setItem("cities", JSON.stringify(listHint));
-          let newWeather = transformWeather(data);
-          this.setState({
-            data: newWeather,
-            city
-          })
+          const result = listHint.includes(city);
+          if (!result) {
+            listHint.push(city);
+            sessionStorage.setItem("cities", JSON.stringify(listHint));
+            let newWeather = transformWeather(data);
+            this.setState({
+              data: newWeather,
+              city
+            })
+          } else {
+            let newWeather = transformWeather(data);
+            this.setState({
+              data: newWeather,
+              city
+            })
+          }
         } else {
           this.setState({ visible: true }, () => {
             window.setTimeout(() => {
