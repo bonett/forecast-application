@@ -58,8 +58,7 @@ class App extends Component {
               city
             })
           } else {
-            listHint.push(city);
-            sessionStorage.setItem("cities", JSON.stringify(listHint));
+            sessionStorage.setItem("cities", JSON.stringify(city));
             let newWeather = transformWeather(data);
             this.setState({
               data: newWeather,
