@@ -47,7 +47,8 @@ class App extends Component {
         return resolve.json();
       }).then(data => {
         if (data.cod === 200) {
-          const result = this.validateCityHint(listHint, city);
+          let result;
+          listHint !== null ? result = this.validateCityHint(listHint, city) : result = []
           if (!result) {
             listHint.push(city);
             sessionStorage.setItem("cities", JSON.stringify(listHint));
